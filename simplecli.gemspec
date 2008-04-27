@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name = "simplecli"
-  s.version = "0.1.3"
+  s.version = "0.1.4"
   s.date = "2008-04-27"
   s.summary = "Super Simple RubyGems-like CLI"
   s.email = "remi@remitaylor.com"
