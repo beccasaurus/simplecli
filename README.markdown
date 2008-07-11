@@ -66,7 +66,7 @@ Here's a super simple SimpleCLI example:
 
 Example usage:
 
-__$ ./hello-cli__
+__`$ ./hello-cli`__
 
     Hello CLI
 
@@ -78,7 +78,7 @@ __$ ./hello-cli__
         hello-cli help <COMMAND>   # show help for COMMAND
         hello-cli help             # show this help message
 
-__$ ./hello-cli commands__
+__`$ ./hello-cli commands`__
 
     hello-cli commands are:
 
@@ -90,14 +90,14 @@ __$ ./hello-cli commands__
 
     For help on a particular command, use 'hello-cli help COMMAND'.
 
-__$ ./hello-cli help__
+__`$ ./hello-cli help`__
 
     Usage: hello-cli help COMMAND
 
       Summary:
         Provide help documentation for a command
 
-__$ ./hello-cli help sayhello__
+__`$ ./hello-cli help sayhello`__
 
     Usage: hello-cli sayhello [SAY]
 
@@ -107,14 +107,14 @@ __$ ./hello-cli help sayhello__
       Summary:
         Says hello!
 
-__$ ./hello-cli sayhello__
+__`$ ./hello-cli sayhello`__
 
     Hello World!
 
-__$ ./hello-cli sayhello Hi There__
+__`$ ./hello-cli sayhello Hi There`__
 
   Hi There
 
-__$ ./hello-cli Hi There__    `# this works because sayhello is configured as the default command`
+__`$ ./hello-cli Hi There`__    `# this works because sayhello is configured as the default command`
 
     Hi There
