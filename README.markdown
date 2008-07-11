@@ -19,11 +19,11 @@ Real Examples
 
 I use SimpleCLI in most of my apps for quick and dirty command-line interfaces.
 
-Here are some real examples:
+Here are a few real examples:
 
- * http://github.com/remi/syntax-on/tree/master/lib/syntax-on/bin.rb
- * http://github.com/remi/domain-finder/tree/master/lib/domain-finder/bin.rb
- * http://github.com/remi/adf/tree/master/lib/adf/bin.rb
+ * [Syntax On](http://github.com/remi/syntax-on/tree/master/lib/syntax-on/bin.rb)
+ * [Domain Finder](http://github.com/remi/domain-finder/tree/master/lib/domain-finder/bin.rb)
+ * [ADF](http://github.com/remi/adf/tree/master/lib/adf/bin.rb)
 
 Example
 -------
