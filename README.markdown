@@ -14,6 +14,17 @@ they'll automatically show up when you run `yourapp commands`
 SimpleCLI also makes it really easy to add documentation to each of
 your commands (or actions)
 
+Real Examples
+-------------
+
+I use SimpleCLI in most of my apps for quick and dirty command-line interfaces.
+
+Here are some real examples:
+
+ * http://github.com/remi/syntax-on/tree/master/lib/syntax-on/bin.rb
+ * http://github.com/remi/domain-finder/tree/master/lib/domain-finder/bin.rb
+ * http://github.com/remi/adf/tree/master/lib/adf/bin.rb
+
 Example
 -------
 
