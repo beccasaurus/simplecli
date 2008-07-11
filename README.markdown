@@ -107,7 +107,7 @@ __$ ./hello-cli help sayhello__
       Summary:
         Says hello!
 
-__$ ./hello-cli sayhello`
+__$ ./hello-cli sayhello__
 
     Hello World!
 
