@@ -1,5 +1,4 @@
-SimpleCLI
-=========
+= SimpleCLI
 
 Super Simple RubyGems-like CLI
 
@@ -14,19 +13,17 @@ they'll automatically show up when you run `yourapp commands`
 SimpleCLI also makes it really easy to add documentation to each of
 your commands (or actions)
 
-Real Examples
--------------
+== Real Examples
 
 I use SimpleCLI in most of my apps for quick and dirty command-line interfaces.
 
 Here are a few real examples:
 
- * [Syntax On](http://github.com/remi/syntax-on/tree/master/lib/syntax-on/bin.rb)
- * [Domain Finder](http://github.com/remi/domain-finder/tree/master/lib/domain-finder/bin.rb)
- * [ADF](http://github.com/remi/adf/tree/master/lib/adf/bin.rb)
+* {Syntax On}[http://github.com/remi/syntax-on/tree/master/lib/syntax-on/bin.rb]
+* {Domain Finder}[http://github.com/remi/domain-finder/tree/master/lib/domain-finder/bin.rb]
+* ADF[http://github.com/remi/adf/tree/master/lib/adf/bin.rb]
 
-Example
--------
+== Example
 
 Here's a super simple SimpleCLI example:
 
@@ -77,7 +74,7 @@ Here's a super simple SimpleCLI example:
 
 Example usage:
 
-__`$ ./hello-cli`__
+<em><tt>$ ./hello-cli</tt></em>
 
     Hello CLI
 
@@ -89,7 +86,7 @@ __`$ ./hello-cli`__
         hello-cli help <COMMAND>   # show help for COMMAND
         hello-cli help             # show this help message
 
-__`$ ./hello-cli commands`__
+<em><tt>$ ./hello-cli commands</tt></em>
 
     hello-cli commands are:
 
@@ -101,14 +98,14 @@ __`$ ./hello-cli commands`__
 
     For help on a particular command, use 'hello-cli help COMMAND'.
 
-__`$ ./hello-cli help`__
+<em><tt>$ ./hello-cli help</tt></em>
 
     Usage: hello-cli help COMMAND
 
       Summary:
         Provide help documentation for a command
 
-__`$ ./hello-cli help sayhello`__
+<em><tt>$ ./hello-cli help sayhello</tt></em>
 
     Usage: hello-cli sayhello [SAY]
 
@@ -118,14 +115,19 @@ __`$ ./hello-cli help sayhello`__
       Summary:
         Says hello!
 
-__`$ ./hello-cli sayhello`__
+<em><tt>$ ./hello-cli sayhello</tt></em>
 
     Hello World!
 
-__`$ ./hello-cli sayhello Hi There`__
+<em><tt>$ ./hello-cli sayhello Hi There</tt></em>
 
   Hi There
 
-__`$ ./hello-cli Hi There`__    `# this works because sayhello is configured as the default command`
+<em><tt>$ ./hello-cli Hi There</tt></em>    `# this works because sayhello is configured as the default command`
 
     Hi There
+
+TODO
+----
+
+* implement <tt>command_missing</tt> method
