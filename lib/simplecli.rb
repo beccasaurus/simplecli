@@ -59,20 +59,61 @@ module SimpleCLI
 
     @default_command  = @options[:default].to_s if @options.keys.include? :default
     @commands         = all_commands
-    
-    if not args.empty? and @commands.map{|c|c.downcase}.include? args.first.downcase
+
+    # if a command is discovered, eg. $ myscript foo 1 2 3 # where foo is a command
+    if not args.empty? and @commands.map {|c| c.downcase }.include? args.first.downcase
       @command = args.shift.downcase
+
+    # if a command is not discovered, and no arguments were sent at all, eg. $ myscript
+    elsif args.empty?
+      @command = @default_command || 'usage'
+
+    # there were args passed, but we don't know what to call ... try command_missing first
+    elsif command_from_command_missing = command_missing(args)
+      @command = command_from_command_missing # if it returns something that's not nil, set it to command
+
+    # there were some arguments, pass if to the default command if there is one, else 'command not found'
+    elsif @default_command
+      @command = @default_command
+
+    # nothing worked out ... show command not found & usage
     else
-      @command = (args.empty?) ? 'usage' : ( @default_command || 'usage' )
+      puts "command not found: #{ args.first.downcase }"
+      @command = 'usage'
+
     end
     
-    @command_args     = args
+    @command_args = args
+  end
+
+  # before dropping to default command ( if defined via :default option ), 
+  # the arguments get passed along to command_missing (you get the original args array)
+  #
+  # your command_missing can return a command string (name of the command) or just a proc to call!
+  #
+  # actually, if what you respond with responds to #call, we use that, else we call #to_s to 
+  # get the name of the command to run
+  #
+  # ***NOTE*** if command_missing makes changes to the args passed to it, these are persisted 
+  #            and passed to the command.  args.dup if you need to mess with args!
+  #
+  # if you return something #call-able, the command arguments will be passed to your block
+  #
+  # you can call super to drop back to the default command_missing in SimpleCLI 
+  # or just return nil to say "nope, can't find a command for this"
+  #
+  def command_missing args
+    nil
   end
   
   # run command determined by parse
   def run
     begin
-      self.send @command, *@command_args
+      if @command.respond_to? :call
+        @command.call @command_args
+      else
+        self.send @command.to_s, *@command_args
+      end
     rescue ArgumentError => ex
       puts "'#{@command}' called with wrong number of arguments\n\n"
       puts help_for( @command )
