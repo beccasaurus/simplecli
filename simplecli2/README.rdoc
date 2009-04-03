@@ -1,0 +1,18 @@
+= simplecli2
+
+What ... version 2???
+
+Don't panic.
+
+I've decided to re-implement SimpleCLI, test-driven.
+
+Actually, it was test-driven once, but those specs are way out of date.
+
+ANYWAY!  I want to recreate SimpleCLI the way I want it to be, nowadays.
+
+THEN ... I will merge it back into the main library, and I might keep the 
+old library around for backwards compatibility ... for instance, if you pass 
+ARGS to SimpleCLI.new (which i don't wannt do anymore), we'll assume you 
+want the old version (for backwards compatibility) ... or ... something!
+
+I dunno yet ... just lemme play with this and figure it out!
