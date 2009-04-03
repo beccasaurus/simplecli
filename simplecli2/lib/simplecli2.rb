@@ -20,6 +20,16 @@ module SimpleCLI2
     include SimpleCLI2::DSL
   end
 
+  # commands are methods that have usage methods too
+  #
+  #   def foo
+  #   def foo_usage
+  #
+  #   ^ :foo will be a command!
+  #
+  # the _usage suffix should be configurable (prefix should be allowed too)
+  # and the DSL should auto-use that configuration value
+  #
   attr_accessor :commands
 
   def self.included base
