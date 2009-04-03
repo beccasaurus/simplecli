@@ -9,6 +9,8 @@ describe SimpleCLI2 do
   #   #command(:name){ ... } # *define* a command (& returns object)
   #   #command(:name) # return the Command object [no defining block]
   #
+  #   #user_commands (subtract the default ones)
+  #
   #   - call parse to figure out what to run ... then run ...
   #   #run  args
   #   #run! args
@@ -19,9 +21,32 @@ describe SimpleCLI2 do
   #
 
   it 'should come out-of-the-box with some commands' do
-    default_commands = SimpleCLI2::Bin.new(%w( some args passed to new Bin )).commands
-    default_commands.should include(:help)
-    default_commands.should include(:commands)
+    pending
+    cli = SimpleCLI2::Bin.new
+    cli.command_names.should include(:help)
+    cli.command_names.should include(:commands)
+  end
+
+  it 'commands need to have a _help method' do
+    cli = SimpleCLI2::Bin.new
+    cli.command_names.should_not include('test')
+    cli.instance_eval do
+      def test;          end
+      def test_help;     end
+      def not_a_command; end
+    end
+    cli.command_names.should     include('test')
+    cli.command_names.should_not include('not_a_command')
+  end
+
+  it 'should be able to add commands' do
+    cli = SimpleCLI2::Bin.new
+    cli.command_names.should_not include('test')
+    cli.instance_eval do
+      def test;          end
+      def test_help;     end
+    end
+    cli.command_names.should include('test')
   end
 
 end

@@ -32,6 +32,13 @@ module SimpleCLI2
   #
   attr_accessor :commands
 
+  def command_names
+    help_methods    = self.methods.grep /_help$/
+    command_methods = self.methods.select do |method_name|
+      help_methods.include? "#{ method_name }_help"
+    end
+  end
+
   def self.included base
     puts "INCLUDED, base => #{ base.inspect }"
     #eigen = (class << self; self; end)
