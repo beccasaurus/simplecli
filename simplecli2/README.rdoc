@@ -16,3 +16,10 @@ ARGS to SimpleCLI.new (which i don't wannt do anymore), we'll assume you
 want the old version (for backwards compatibility) ... or ... something!
 
 I dunno yet ... just lemme play with this and figure it out!
+
+*ALSO* ... just cause I'm weird like this, I'm going to try to 
+*fully* re-implement SimpleCLI without reading the old SimpleCLI 
+code ... just incase I do it better.  I'll probably do some things 
+better and some things worse ... then I can refactor  :)
+
+ALSO ... i should mark certain parts of the API as public, this time around!
