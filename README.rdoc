@@ -1,5 +1,27 @@
 = SimpleCLI
 
+== UNDERGOING RENOVATIONS !!
+
+SimpleCLI is Undergoing Renovations
+
+After over a year of use, this library needs some love!
+
+I'm going to ...
+
+- get a spec suite working again (I had specs for SimpleCLI once ... they're gone now)
+- create a DSL (or 2) for making it easier for people to make SimpleCLI apps if 
+  they don't want to just include the SimpleCLI module in one of their classes
+- make (atleast some of) the DSL work in pre-defined classes (kindof like what we do now)
+- create a screencast showing how easy it is to use SimpleCLI (and how to test-drive 
+  SimpleCLI applications)
+- document #command_missing and #default_comment usage with good examples
+- create abunchof examples and throw them in the examples directory
+- add #before and #after blocks for handling global options or something to do before 
+  exiting type stuff
+- make sure errors return the right response code
+
+== About
+
 Super Simple RubyGems-like CLI
 
 SimpleCLI gives you a stupidly simple way to implement command-line 
@@ -130,4 +152,5 @@ Example usage:
 TODO
 ----
 
-* implement <tt>command_missing</tt> method
+ * implement a `before` block for handling global options
+ * there was once a spec suite ... where'd it go?  find or recreate it!
