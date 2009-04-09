@@ -1,0 +1,11 @@
+OK
+
+we've got V1 - the regular old SimpleCLI
+
+we've got a bit of DSL prototyping in SimpleCLI2
+
+here, I'm going to:
+ * re-implement the simple DSL-less version
+ * add the DSL on top of it
+ * make sure it's backwards compatible
+ * overwrite SimpleCLI with SimpleCLI2 & deploy  :)
