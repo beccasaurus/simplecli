@@ -9,3 +9,5 @@ here, I'm going to:
  * add the DSL on top of it
  * make sure it's backwards compatible
  * overwrite SimpleCLI with SimpleCLI2 & deploy  :)
+
+reminder: KEEP IT SIMPLE!
