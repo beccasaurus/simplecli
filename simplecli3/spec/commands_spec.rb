@@ -31,7 +31,12 @@ describe SimpleCLI, 'commands' do
     ExampleClass.new.command_names.should_not include('custom2')
   end
 
-  it 'should be able to find #command_names (on a class ... cause, why not?)'
+  it 'should be able to find #command_names (on a class ... cause, why not?)' do
+    ExampleClass.command_names.should     include('command_method')
+    ExampleClass.command_names.should_not include('regular_method')
+    ExampleClass.command_names.should_not include('custom1')
+    ExampleClass.command_names.should_not include('custom2')
+  end
 
   it 'should be able to change the prefix/suffix for defining the [command]_help method' do
     default_prefix, default_suffix = SimpleCLI.help_prefix, SimpleCLI.help_suffix

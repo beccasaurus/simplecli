@@ -34,4 +34,32 @@ module SimpleCLI
     end
   end
 
+  # the logic performed when SimpleCLI is included, as a module
+  def self.included base
+    base.extend ClassMethods
+  end
+
+  # a module we extend your class with when you include SimpleCLI
+  module ClassMethods
+    
+    # TODO this is duplicated!  ah!  fix!!!
+    # Get the names of all of the availabe commands
+    #
+    # ==== Returns
+    # <Array(String)>:: List of command names
+    #
+    # api: public
+    def command_names
+      # extract this puppy out of here?
+      help_methods    = self.instance_methods
+      help_methods    = help_methods.select {|name| name.start_with?(SimpleCLI.help_prefix) } if SimpleCLI.help_prefix
+      help_methods    = help_methods.select {|name| name.end_with?(SimpleCLI.help_suffix)   } if SimpleCLI.help_suffix
+
+      command_methods = self.instance_methods.select do |method_name|
+        help_methods.include? "#{ SimpleCLI.help_prefix }#{ method_name }#{ SimpleCLI.help_suffix }"
+      end
+    end
+
+  end
+
 end
