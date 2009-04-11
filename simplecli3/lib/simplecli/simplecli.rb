@@ -15,12 +15,42 @@ module SimpleCLI
 
     SimpleCLI.help_suffix ||= '_help'
 
+    # Get the name for a help method, given a method name
+    #
+    # Simply generates a string - does not guarantee that the method 
+    # actually exists on any object.
+    #
+    # ==== Parameters
+    # <~to_s>:: The name of the method you want to get the help method name for
+    #
+    # ==== Returns
+    # String:: The name that a help method would have for the given name
+    #
+    # :api: public
+    def help_method_name name
+      "#{ SimpleCLI.help_prefix }#{ name }#{ SimpleCLI.help_suffix }"
+    end
+
     # Get the names of all of the available commands for an object
     #
     # ==== Returns
     # <Array(String)>:: List of command names
     #
-    # api: public
+    # ==== Notes
+    # For now, we only work with instance methods on Class objects
+    #
+    # This has limitations.  For instance, your Class may have its 
+    # own command methods.  Currently, this is unsupported!
+    #
+    # ==== Usage
+    #
+    #   >> SimpleCLI.commands MySimpleCLIClass
+    #   => [ ... MySimpleCLIClass's instance method commands ... ]
+    #
+    #   >> SimpleCLI.commands @instance_of_MySimpleCLIClass
+    #   => [ ... MySimpleCLIClass's instance method commands ... ]
+    #
+    # :api: public
     def command_names object_with_commands
       methods = object_with_commands.is_a?(Class) ? 
                   object_with_commands.instance_methods :
@@ -41,9 +71,23 @@ module SimpleCLI
   # ==== Returns
   # <Array(String)>:: List of command names
   #
-  # api: public
+  # :api: public
   def command_names
     SimpleCLI.command_names self
+  end
+
+  # Get Command objects for the given instance
+  #
+  # ==== Returns
+  # Array(Command)::
+  #   The Command objects for this Class instance.
+  #
+  #   The returned Command objects should be fully #call'able 
+  #   and should have #documentation and a #summary, etc.
+  #
+  # :api: public
+  def commands
+    Command.commands self
   end
 
   # the logic performed when SimpleCLI is included, as a module
@@ -59,7 +103,7 @@ module SimpleCLI
     # ==== Returns
     # <Array(String)>:: List of command names
     #
-    # api: public
+    # :api: public
     def command_names
       SimpleCLI.command_names self
     end

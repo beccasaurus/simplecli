@@ -1,26 +1,6 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
-class ExampleClass
-  include SimpleCLI
-
-  def command_method *args
-    "called command_method with #{ args.inspect }"
-  end
-  def command_method_help
-    "Hello from command_method Help\n\nSummary:\n  command_method is the coolest"
-  end
-
-  def regular_method *args
-  end
-  
-  # uses custom prefix
-  def custom1; end
-  def documentation_for_custom1; end
-
-  # used custom prefix and suffix
-  def custom2; end
-  def documentation_for_custom2_stuff; end
-end
+# NOTE ExampleClass is defined in spec_helper.rb
 
 describe SimpleCLI, 'commands' do
 
@@ -69,6 +49,19 @@ describe SimpleCLI, 'commands' do
     ExampleClass.new.command_names.should_not include('regular_method')
     ExampleClass.new.command_names.should_not include('custom1')
 
+    SimpleCLI.help_prefix, SimpleCLI.help_suffix = default_prefix, default_suffix
+  end
+
+  it 'should be able to get the name of a help method (#help_method_name)' do
+    default_prefix, default_suffix = SimpleCLI.help_prefix, SimpleCLI.help_suffix
+
+    SimpleCLI.help_prefix = 'documentation_for_'
+    SimpleCLI.help_suffix = nil
+    SimpleCLI.help_method_name('foo').should == 'documentation_for_foo'
+
+    SimpleCLI.help_suffix = '_stuff'
+    SimpleCLI.help_method_name('foo').should == 'documentation_for_foo_stuff'
+    
     SimpleCLI.help_prefix, SimpleCLI.help_suffix = default_prefix, default_suffix
   end
 
