@@ -58,6 +58,14 @@ module SimpleCLI #:nodoc:
       def commands object_with_commands
         command_names = SimpleCLI.command_names object_with_commands
         command_names.map do |name|
+          command object_with_commands, name
+        end
+      end
+
+      # Returns a single Command by name, for a particular object with commands
+      def command object_with_commands, name
+        name = name.to_s
+        if SimpleCLI.command_names(object_with_commands).include?(name)
           if object_with_commands.is_a?(Class)
             Command.new :name => name, :proc => Command::RaiseCalledOnClassException, 
                          :documentation_proc => Command::RaiseCalledOnClassException

@@ -18,8 +18,6 @@ describe SimpleCLI::Command do
     cmd.documentation.should == ExampleClass.new.command_method_help
   end
 
-  it 'should have the right #summary'
-
   it 'should be able to find #commands (on an instance)' do
     ExampleClass.new.commands.map(&:name).should     include('command_method')
     ExampleClass.new.commands.map(&:name).should_not include('regular_method')
@@ -27,12 +25,27 @@ describe SimpleCLI::Command do
 
   it 'should be able to find Command#commands(Class) on a Class with commands'
 
+  it 'should be able to get a particular Command for an instance that has commands' do
+    Command.command(ExampleClass.new, :regular_method).should     be_nil
+    Command.command(ExampleClass.new, :command_method).should_not be_nil
+    Command.command(ExampleClass.new, :command_method).documentation.should == ExampleClass.new.command_method_help
+
+    ExampleClass.new.command(:regular_method).should     be_nil
+    ExampleClass.new.command(:command_method).should_not be_nil
+    ExampleClass.new.command(:command_method).documentation.should == ExampleClass.new.command_method_help
+  end
+
+  it 'should be able to #run' do
+    pending "hmmm ...."
+    cmd = ExampleClass.new.command :command_method
+  end
+
+  it 'should be able to #run!'
+
   it 'should be able to find Command#commands(instance) on an instance with commands' do
     Command.commands(ExampleClass.new).map(&:name).should     include('command_method')
     Command.commands(ExampleClass.new).map(&:name).should_not include('regular_method')
   end
-
-  it 'should be able to find itself on a class that defines it (need to re-word this)'
 
   it 'should have a name' do
     Command.new.name.should be_nil

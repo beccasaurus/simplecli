@@ -90,6 +90,19 @@ module SimpleCLI
     Command.commands self
   end
 
+  # Gets a particular Command for this Class instnace by name
+  #
+  # ==== Parameters
+  # <~to_s>:: The name of the Command you want returned
+  #
+  # ==== Returns
+  # Command:: The Command found (or nil)
+  #
+  # :api: public
+  def command name
+    Command.command self, name
+  end
+
   # the logic performed when SimpleCLI is included, as a module
   def self.included base
     base.extend ClassMethods
