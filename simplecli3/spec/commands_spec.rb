@@ -38,6 +38,20 @@ describe SimpleCLI, 'commands' do
     ExampleClass.command_names.should_not include('custom2')
   end
 
+  it 'should be able to find SimpleCLI#command_names(Class) for any Class that has commands' do
+    SimpleCLI.command_names(ExampleClass).should     include('command_method')
+    SimpleCLI.command_names(ExampleClass).should_not include('regular_method')
+    SimpleCLI.command_names(ExampleClass).should_not include('custom1')
+    SimpleCLI.command_names(ExampleClass).should_not include('custom2')
+  end
+
+  it 'should be able to find SimpleCLI#command_names(object) for any object that has commands' do
+    SimpleCLI.command_names(ExampleClass.new).should     include('command_method')
+    SimpleCLI.command_names(ExampleClass.new).should_not include('regular_method')
+    SimpleCLI.command_names(ExampleClass.new).should_not include('custom1')
+    SimpleCLI.command_names(ExampleClass.new).should_not include('custom2')
+  end
+
   it 'should be able to change the prefix/suffix for defining the [command]_help method' do
     default_prefix, default_suffix = SimpleCLI.help_prefix, SimpleCLI.help_suffix
 
